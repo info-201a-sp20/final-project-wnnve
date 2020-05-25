@@ -1,0 +1,23 @@
+---
+title: "Test"
+author: "Winnie Chen"
+date: "5/25/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+source
+```
+
+```{r echo = F, include=FALSE}
+library("knitr")
+
+source("analysis.R")
+```
+
+```{r echo=FALSE}
+plot
+
+```
+
