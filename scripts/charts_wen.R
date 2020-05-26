@@ -1,7 +1,6 @@
 library(tidyverse)
 library(scales)
 library(gridExtra)
-library(ggthemes)
 library(ggplot2)
 library(dplyr)
 library(stringr)
