@@ -7,17 +7,50 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-source
+
 ```
 
 ```{r echo = F, include=FALSE}
-library("knitr")
+library(knitr)
 
 source("analysis.R")
+
+source("scripts/summary_info.R")
 ```
 
-```{r echo=FALSE}
-plot
+## Intro
+Fill in later
 
+```{r echo=FALSE, include=FALSE}
+education_df <- read.csv("data/education_usda.csv", stringsAsFactors = F)
+colnames(education_df)[1] <- gsub('^...', '', colnames(education_df)[1])
+
+poverty_df <- read.csv("data/PovertyEstimates_usda.csv")
+colnames(poverty_df)[1] <- gsub('^...', '', colnames(poverty_df)[1])
+
+unemployment_df <- read.csv("data/Unemployment_usda.csv")
+colnames(unemployment_df)[1] <- gsub('^...', '', colnames(unemployment_df)[1])
+
+education_poverty_unemployment_df <- education_df %>% 
+  left_join(poverty_df, by = c("FIPS.Code" = "FIPStxt")) %>% 
+  left_join(unemployment_df, by = c("FIPS.Code" = "FIPStxt"))
+
+county_summary <- get_summary_info(education_poverty_unemployment_df)
 ```
+
+## Summary Information
+In 2018, the mean percent of adults living in a given county in the U.S.
+without a highschool diploma was 
+`r round(county_summary$mean_county_no_diploma_rate, digits = 2)`%,
+while the mean percent of adults with a bachelor's degree or more was
+`r round(county_summary$mean_county_bach_rate, digits = 2)`%. The average
+unemployment rate and poverty rate for U.S. counties were
+`r round(county_summary$mean_county_unemployment, digits = 2)`% and
+`r round(county_summary$mean_pov_rate, digits = 2)`% respectively.
+The county with the lowest poverty rate had
+`r round(county_summary$min_pov_rate, digits = 2)`% of its population
+living in poverty, while the county with the highest poverty rate had
+`r round(county_summary$max_pov_rate, digits = 2)`% of its population living
+in poverty.
+
 
