@@ -10,49 +10,10 @@ library("stringr")
 df <- read.csv("../data/unemployment_data_us_kaggle.csv", stringsAsFactors = FALSE)
 View(df)
 
-
+#add average unemployment column
 df <- mutate(df, avg_unemployment = (White + Black + Asian + Hispanic) / 4)
 
-plot_filter <- df %>%
-  filter(Year != "2020") %>%
-  group_by(Month) %>%
-  select(Year, Month, White, Black, Asian, Hispanic, avg_unemployment)
-
-View(plot_filter)
-
-q <- ggplot(data = plot_filter) +
-  geom_point(mapping = aes(x = Month, y = avg_unemployment, color = "AVERAGE")) +
-  geom_point(mapping = aes(x = Month, y = White, color = "WHITE")) +
-  geom_point(mapping = aes(x = Month, y = Asian, color = "ASIAN")) +
-  geom_point(mapping = aes(x = Month, y = Black, color = "BLACK")) +
-  geom_point(mapping = aes(x = Month, y = Hispanic, color = "HISPANIC")) +
-  facet_wrap(~Year) +
-  theme_classic() +
-  labs(x = "Month", y = "Unemployment Rate") +
-  ggtitle("Unemployment Rate and Race Between 2010 - 2019") +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1)) 
-
-
-
-plot_filter1 <- plot_filter %>%
-  filter(Year == "2019")
-
-plot_filter1$month_num <- 1:12
-
-View(plot_filter1)
-
-p <- ggplot(data = plot_filter1) + 
-  geom_line(mapping = aes(x = month_num, y = avg_unemployment, color = "AVERAGE")) +
-  geom_line(mapping = aes(x = month_num, y = White, color = "WHITE")) +
-  geom_line(mapping = aes(x = month_num, y = Asian, color = "ASIAN")) +
-  geom_line(mapping = aes(x = month_num, y = Black, color = "BLACK")) +
-  geom_line(mapping = aes(x = month_num, y = Hispanic, color = "HISPANIC")) +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
-  theme_classic() +
-  labs(x = "Month", y = "Unemployment Rate") +
-  ggtitle("Unemployment Rate and Race in 2019") 
-
-
+#filter data
 plot_filter2 <- df %>%
   filter(Year != "2020") %>%
   group_by(Month) %>%
@@ -61,13 +22,6 @@ plot_filter2 <- df %>%
 
 plot_filter2$month_num <- 1:12
 View(plot_filter2)
-
-df <- mutate(df, avg_unemployment = (White + Black + Asian + Hispanic) / 4)
-
-plot_filter <- df %>%
-  filter(Year != "2020") %>%
-  group_by(Month) %>%
-  select(Year, Month, White, Black, Asian, Hispanic, avg_unemployment)
 
 # To be included in the Markdown!!
 
