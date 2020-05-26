@@ -7,7 +7,8 @@ library(stringr)
 
 stacked_bar_chart <- function(dataset) {
   #GGPLOT
-  plot <- ggplot(data = dataset, mapping = aes(x = Year, y = avg_unemployment_rate)) +
+  plot <- ggplot(data = dataset,
+                 mapping = aes(x = Year, y = avg_unemployment_rate)) +
     geom_bar(mapping = aes(fill = education_level), stat = "identity") +
     labs(title = "Average Unemployment Rate through time by Education Level",
          x = "Year",

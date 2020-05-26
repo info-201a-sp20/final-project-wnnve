@@ -18,6 +18,8 @@ source("scripts/analysis.R")
 source("scripts/summary_info.R")
 
 source("scripts/charts_wen.R")
+
+source("scripts/analysis_graphnicole.R")
 ```
 
 ## Intro
@@ -25,19 +27,19 @@ Fill in later
 
 ```{r echo=FALSE, include=FALSE}
 education_df <- read.csv("data/education_usda.csv", stringsAsFactors = F)
-colnames(education_df)[1] <- gsub('^...', '', colnames(education_df)[1])
+colnames(education_df)[1] <- gsub("^...", "", colnames(education_df)[1])
 
 poverty_df <- read.csv("data/PovertyEstimates_usda.csv")
-colnames(poverty_df)[1] <- gsub('^...', '', colnames(poverty_df)[1])
+colnames(poverty_df)[1] <- gsub("^...", "", colnames(poverty_df)[1])
 
 unemployment_df <- read.csv("data/Unemployment_usda.csv")
-colnames(unemployment_df)[1] <- gsub('^...', '', colnames(unemployment_df)[1])
+colnames(unemployment_df)[1] <- gsub("^...", "", colnames(unemployment_df)[1])
 
-education_poverty_unemployment_df <- education_df %>% 
-  left_join(poverty_df, by = c("FIPS.Code" = "FIPStxt")) %>% 
+education_pov_unemployment_df <- education_df %>%
+  left_join(poverty_df, by = c("FIPS.Code" = "FIPStxt")) %>%
   left_join(unemployment_df, by = c("FIPS.Code" = "FIPStxt"))
 
-county_summary <- get_summary_info(education_poverty_unemployment_df)
+county_summary <- get_summary_info(education_pov_unemployment_df)
 ```
 
 ## Summary Information
@@ -62,7 +64,8 @@ in poverty.
 The purpose of this graph is to show the correlation between the unemployment of each state and the number of people in poverty. Each dot represents a state and their unemployment rate and how that affects the people in poverty. A scatter plot would be the best plot for this type of data since it makes it easy for the user to see how it correlates with each other. 
 
 ```{r echo=FALSE}
-unemployment_vs_poverty <- read.csv("data/Unemployement_Poverty_2016_kaggle.csv",
+unemployment_vs_poverty <- 
+  read.csv("data/Unemployement_Poverty_2016_kaggle.csv",
                                     stringsAsFactors = FALSE)
 
 unemployment_by_state <- unemployment_vs_poverty %>%
@@ -112,3 +115,21 @@ stacked_bar_chart(new_df)
 ```
 
 I included this stacked bar chart because it compares the unemployment rates of each education level by year. This is easier to see the differences. The chart reveals the average unemployment rate for each education level by year. One thing I observed from this was that the discrepancy between a primary school education level and a professional school education level got smaller as the years passed. In addition, the chart descended as the years passed, which means that unemployment levels decreased.
+
+## Chart 3: Unemployment Demographics
+
+```{r echo=FALSE}
+df <- read.csv("data/unemployment_data_us_kaggle.csv", stringsAsFactors = FALSE)
+
+df <- mutate(df, avg_unemployment = (White + Black + Asian + Hispanic) / 4)
+
+plot_filter2 <- df %>%
+  filter(Year != "2020") %>%
+  group_by(Month) %>%
+  arrange(Year) %>%
+  select(Year, Month, White, Black, Asian, Hispanic, avg_unemployment)
+
+graph_function(plot_filter2)
+```
+
+This chart reveals that among black, white, hispanic, and asian people, black people had a higher unemployment rate from 2010 - 2019. The green line shows the average unemployment rate and this allows us to see that asian and white people are below the average unemployment rate while hispanic people are close to average and black people are above average. This graph creates a visualization to see how unemployment rates were widespread in 2010 but have become closer to the same rate in 2019 although black people still have the highest rate of unemployment. 
