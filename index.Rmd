@@ -16,6 +16,8 @@ library(knitr)
 source("scripts/analysis.R")
 
 source("scripts/summary_info.R")
+
+source("scripts/charts_wen.R")
 ```
 
 ## Intro
@@ -76,3 +78,37 @@ visualization(unemployment_by_state, "State")
 
 This chart reveals that there's a positive correlation between unemployment and people in poverty. The lower the unemployment, the lower the number of people in poverty. It also shows that many states don't have high unemployment and people in poverty, however, there are no states that has exactly zero. In addition, we see a few outliers in the chart, two specifically that are way out of line with the rest of the states. Regardless of the two outliers, we can see that there is a positive correlation between unemployment and people in poverty.
 
+## Chart 2: Unemployment vs Education Level
+
+```{r echo=FALSE}
+unemployment_df <- read.csv("data/unemployment_data_us_kaggle.csv", stringsAsFactors = FALSE)
+
+df_1 <- unemployment_df %>%
+  group_by(Year) %>%
+  summarize(avg_unemployment_rate = mean(Primary_School, na.rm = T)) %>%
+  mutate(education_level = "Primary School")
+
+df_2 <- unemployment_df %>%
+  group_by(Year) %>%
+  summarize(avg_unemployment_rate = mean(High_School, na.rm = T)) %>%
+  mutate(education_level = "High School")
+
+df_3 <- unemployment_df %>%
+  group_by(Year) %>%
+  summarize(avg_unemployment_rate = mean(Associates_Degree, na.rm = T)) %>%
+  mutate(education_level = "Associates Degree")
+
+df_4 <- unemployment_df %>%
+  group_by(Year) %>%
+  summarize(avg_unemployment_rate = mean(Professional_Degree, na.rm = T)) %>%
+  mutate(education_level = "Professional Degree")
+
+summary <- rbind(df_1, df_2, df_3, df_4)
+
+new_df <- summary %>%
+  filter(Year != "2020")
+
+stacked_bar_chart(new_df)
+```
+
+I included this stacked bar chart because it compares the unemployment rates of each education level by year. This is easier to see the differences. The chart reveals the average unemployment rate for each education level by year. One thing I observed from this was that the discrepancy between a primary school education level and a professional school education level got smaller as the years passed. In addition, the chart descended as the years passed, which means that unemployment levels decreased.
