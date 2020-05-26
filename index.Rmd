@@ -1,5 +1,5 @@
 ---
-title: "Test"
+title: "MidPoint Deliverable"
 author: "Winnie Chen"
 date: "5/25/2020"
 output: html_document
@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r echo = F, include=FALSE}
 library(knitr)
 
-source("analysis.R")
+source("scripts/analysis.R")
 
 source("scripts/summary_info.R")
 ```
@@ -53,4 +53,26 @@ living in poverty, while the county with the highest poverty rate had
 `r round(county_summary$max_pov_rate, digits = 2)`% of its population living
 in poverty.
 
+## Aggregate Table Script
+
+## Chart 1: Unemployment vs Poverty
+
+The purpose of this graph is to show the correlation between the unemployment of each state and the number of people in poverty. Each dot represents a state and their unemployment rate and how that affects the people in poverty. A scatter plot would be the best plot for this type of data since it makes it easy for the user to see how it correlates with each other. 
+
+```{r echo=FALSE}
+unemployment_vs_poverty <- read.csv("data/Unemployement_Poverty_2016_kaggle.csv",
+                                    stringsAsFactors = FALSE)
+
+unemployment_by_state <- unemployment_vs_poverty %>%
+  group_by(State) %>%
+  summarise(
+    unemployment_rate = sum(Unemployment_rate_2016, na.rm = TRUE),
+    people_in_poverty = sum(POVALL_2016, na.rm = TRUE)) %>%
+  arrange(desc(unemployment_rate))
+
+visualization(unemployment_by_state, "State")
+
+```
+
+This chart reveals that there's a positive correlation between unemployment and people in poverty. The lower the unemployment, the lower the number of people in poverty. It also shows that many states don't have high unemployment and people in poverty, however, there are no states that has exactly zero. In addition, we see a few outliers in the chart, two specifically that are way out of line with the rest of the states. Regardless of the two outliers, we can see that there is a positive correlation between unemployment and people in poverty.
 
