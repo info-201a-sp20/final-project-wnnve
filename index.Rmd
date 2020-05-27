@@ -23,7 +23,9 @@ source("scripts/analysis_graphnicole.R")
 ```
 
 ## Intro
-Fill in later
+Our group project primarily focuses on unemployment because right now, during this pandemic, unemployment has been at an all time high; however, we want to analyze what other factors could affect unemployment. We analyzed and see how unemployment relates to education, basic demographics, and poverty. 
+
+There were several datasets that was used in this project, such as unemployment by state and area, as well as education levels from primary school to Master's degree. Our project mainly focuses on three dataset: poverty, basic demographics, and education. The poverty dataset compares how poverty is spread throughout the U.S., allowing us to examine the relationship between unemployment and poverty and see what states and counties have the highest prevalence. As for the education and basic demographics dataset, it contains the unemployment rate based on the education qualification of adults and race.
 
 ```{r echo=FALSE, include=FALSE}
 education_df <- read.csv("data/education_usda.csv", stringsAsFactors = F)
@@ -58,6 +60,8 @@ living in poverty, while the county with the highest poverty rate had
 in poverty.
 
 ## Aggregate Table Script
+
+needs to be added in
 
 ## Chart 1: Unemployment vs Poverty
 
