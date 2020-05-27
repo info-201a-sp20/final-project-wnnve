@@ -12,10 +12,14 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r echo = F, include=FALSE}
 library(knitr)
+library(dplyr)
+library(readxl)
 
 source("scripts/analysis.R")
 
 source("scripts/summary_info.R")
+
+source("scripts/agg_table.R")
 
 source("scripts/charts_wen.R")
 
@@ -26,18 +30,23 @@ source("scripts/analysis_graphnicole.R")
 Fill in later
 
 ```{r echo=FALSE, include=FALSE}
-education_df <- read.csv("data/education_usda.csv", stringsAsFactors = F)
-colnames(education_df)[1] <- gsub("^...", "", colnames(education_df)[1])
+education_df <- read_xls("data/education_usda.xls", range = "Education 1970 to 2018!A5:AU3288")
+colnames(education_df) <- gsub(' ', '_', colnames(education_df))
+colnames(education_df) <- gsub(',', '', colnames(education_df))
+colnames(education_df) <- gsub("'", '', colnames(education_df))
+colnames(education_df) <- gsub('-', '_', colnames(education_df))
 
-poverty_df <- read.csv("data/PovertyEstimates_usda.csv")
-colnames(poverty_df)[1] <- gsub("^...", "", colnames(poverty_df)[1])
+poverty_df <- read_xls("data/PovertyEstimates_usda.xls", range = "Poverty Data 2018!A5:AB3198")
+colnames(poverty_df) <- gsub(' ', '_', colnames(poverty_df))
+colnames(poverty_df) <- gsub(',', '', colnames(poverty_df))
 
-unemployment_df <- read.csv("data/Unemployment_usda.csv")
-colnames(unemployment_df)[1] <- gsub("^...", "", colnames(unemployment_df)[1])
+unemployment_df <- read_xls("data/Unemployment_usda.xls", range = "Unemployment Med HH Income!A8:CJ3283")
+colnames(unemployment_df) <- gsub(' ', '_', colnames(unemployment_df))
+colnames(unemployment_df) <- gsub(',', '', colnames(unemployment_df))
 
 education_pov_unemployment_df <- education_df %>%
-  left_join(poverty_df, by = c("FIPS.Code" = "FIPStxt")) %>%
-  left_join(unemployment_df, by = c("FIPS.Code" = "FIPStxt"))
+  left_join(poverty_df, by = c("FIPS_Code" = "FIPStxt")) %>%
+  left_join(unemployment_df, by = c("FIPS_Code" = "FIPStxt"))
 
 county_summary <- get_summary_info(education_pov_unemployment_df)
 ```
@@ -57,7 +66,14 @@ living in poverty, while the county with the highest poverty rate had
 `r round(county_summary$max_pov_rate, digits = 2)`% of its population living
 in poverty.
 
-## Aggregate Table Script
+## Average Unemployment Rate With Different Levels of Education
+```{r eval=T, echo=F}
+unemployment_kag_df <- read.csv("data/unemployment_data_us_kaggle.csv",
+                                stringsAsFactors = F)
+
+aggregate_table <- get_agg_table(unemployment_kag_df)
+kable(aggregate_table, digits = 2)
+```
 
 ## Chart 1: Unemployment vs Poverty
 
