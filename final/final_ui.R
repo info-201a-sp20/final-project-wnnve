@@ -34,7 +34,11 @@ overview_panel <- tabPanel(
     This dataset answers questions of how unemployment is spread throughout the U.S. 
     and we can also compare that to how poverty is spread throughout the U.S. 
     This will allow us to examine the relationship between unemployment and poverty 
-    and see what states and counties have the highest prevalence."),
+    and see what states and counties have the highest prevalence.
+    The second dataset we looked at answers how education correlates with unemployment. 
+    It contains the unemployment rate based on the education qualification of adults that went
+    to primary school, high school, Associates, and Professional degree. It also has the unemployment
+    rate based on the race of adults."),
   sidebarLayout(
     img(src = "images/unemployment.jpg"),
     p("Unemployment has always been prevelent.... ")
