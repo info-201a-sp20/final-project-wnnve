@@ -13,7 +13,7 @@ main_content <- mainPanel(
 )
 
 education_panel <- tabPanel(
-  "Unemployment vs Education Chart",
+  strong("Unemployment vs Education Chart"),
   titlePanel("Unemployment vs Education"),
   sidebarLayout(
     year_content,
@@ -22,11 +22,23 @@ education_panel <- tabPanel(
 )
 
 overview_panel <- tabPanel(
-  "Overview"
+  strong("Overview"),
+  titlePanel("Overview"),
+  p("unemployment has been at an all time high because of the coronavirus, 
+  however, we want to analyze what other factors could affect unemployment. We specifically
+    analyzed poverty, education, and demographics. Now with our findings, we decided to exclude
+    the year 2020 because we did not have the sufficient amount of information to analyze our data.
+    The numbers would have been skewed and incorrect, thus impacting the rest of our data analysis."),
+  p("Some questions we are seeking to answer are... We will be using ____ and ___ datasets to answer
+    these questions"),
+  sidebarLayout(
+    img(src = "images/unemployment.jpg"),
+    p("Unemployment has always been prevelent.... ")
+  )
 )
 
 ui <- navbarPage(
-  "Unemployment",
+  strong("Unemployment"),
     overview_panel,
     education_panel
 )

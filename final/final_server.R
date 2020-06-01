@@ -34,6 +34,7 @@ new_df <- summary %>%
   filter(Year != "2020")
 
 server <- function(input, output) {
+
   output$plot <- renderPlot({
     
     # ggplot bar
