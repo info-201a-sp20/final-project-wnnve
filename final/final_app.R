@@ -1,7 +1,7 @@
 
 library("shiny")
 
-source("wen_ui.R")
-source("wen_server.R")
+source("final_ui.R")
+source("final_server.R")
 
 shinyApp(ui = ui, server = server)

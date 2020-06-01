@@ -21,7 +21,12 @@ education_panel <- tabPanel(
   )
 )
 
+overview_panel <- tabPanel(
+  "Overview"
+)
+
 ui <- navbarPage(
-  h1("Unemployment"),
-  education_panel
+  "Unemployment",
+    overview_panel,
+    education_panel
 )
