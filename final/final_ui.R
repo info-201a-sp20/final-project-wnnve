@@ -30,7 +30,11 @@ overview_panel <- tabPanel(
     the year 2020 because we did not have the sufficient amount of information to analyze our data.
     The numbers would have been skewed and incorrect, thus impacting the rest of our data analysis."),
   p("Some questions we are seeking to answer are... We will be using ____ and ___ datasets to answer
-    these questions"),
+    these questions. The first dataset we looked at was unemployment vs poverty. 
+    This dataset answers questions of how unemployment is spread throughout the U.S. 
+    and we can also compare that to how poverty is spread throughout the U.S. 
+    This will allow us to examine the relationship between unemployment and poverty 
+    and see what states and counties have the highest prevalence."),
   sidebarLayout(
     img(src = "images/unemployment.jpg"),
     p("Unemployment has always been prevelent.... ")
