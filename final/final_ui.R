@@ -110,9 +110,40 @@ demographic_panel <- tabPanel(
     have the highest rate of unemployment.")
 )
 
+#Winnie's Page
+page_one <- mainPanel(
+  plotlyOutput(
+    outputId = "interactive_graph"
+  )
+)
+
+page_one_sliderbar <- sidebarPanel(
+  sliderInput("slider2", label = h3("Adjust Unemployment Rate"), min = 0, 
+              max = 1000, value = c(0, 1000)),
+  p("You can adjust the range of the unemployment rate by sliding the slider")
+)
+
+unemployment_panel <- tabPanel(
+  strong("Unemployment vs Poverty"),
+  titlePanel("How Unemployment Effects Poverty By States"),
+  sidebarLayout(
+    page_one,
+    page_one_sliderbar
+  ),
+  h2("Findings"),
+  p("This graph shows the unemployment rate and the people in poverty by state. 
+    When you hover over the dots, it'll show the specific state, the number of people in poverty,
+    and the unemployment rate for that state. This chart reveals that unemployment and the 
+    people in poverty are mostly correlated. As you can see, the furthest dot, Georgia,
+    has a high unemployment rate but the number of people in poverty isn't as high as other
+    states that have a higher unemployment rate. Besides a few outliers, the unemployment
+    rate usually corresponds to the number of people in poverty. ")
+  )
+
 ui <- navbarPage(
   strong("Unemployment"),
   overview_panel,
   education_panel,
-  demographic_panel
+  demographic_panel,
+  unemployment_panel
 )
