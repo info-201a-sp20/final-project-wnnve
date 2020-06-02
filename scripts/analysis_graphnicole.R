@@ -1,3 +1,5 @@
+
+
 graph_function <- function(dataframe) {
   ggplot(data = dataframe) +
     geom_line(mapping = aes(x = reorder(Month, -avg_unemployment),
