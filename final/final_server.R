@@ -157,22 +157,26 @@ server <- function(input, output) {
   }) 
   
   #Winnie's page
+  
+  #A visualization function
   output$interactive_graph <- renderPlotly({
     visualization <- function(dataset, region) {
       #GGPLOT
       plot <- ggplot(data = dataset) +
         geom_point(mapping = aes(x = unemployment_rate, y = people_in_poverty, 
-                                 text = paste("State: ", State))) +
+                                 text = paste("State: ", State))) + theme_classic() +
         labs(
           title = paste("Unemployment vs Number of People in Poverty By", region),
           x = "Unemployment Rate", y = "People in Poverty (in Millions)")
       return(plot)
     }
     
+    #Reads in CSV file
     unemployment_vs_poverty <- 
       read.csv("../data/Unemployement_Poverty_2016_kaggle.csv",
                stringsAsFactors = FALSE)
     
+    #Filters the dataframe into a small dataframe by state
     unemployment_by_state <- unemployment_vs_poverty %>%
       group_by(State) %>%
       summarise(
@@ -183,7 +187,7 @@ server <- function(input, output) {
     
     visualization(unemployment_by_state, "State")
   })
-  
+  #The slider used to adjust the unemployment rate
   output$range <- renderPrint({input$slider2})
 }
 

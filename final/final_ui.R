@@ -147,7 +147,8 @@ unemployment_panel <- tabPanel(
 
 ui <- navbarPage(
   theme = shinytheme("flatly"),
-  strong("Unemployment"),
+  title = strong("Unemployment"),
+  includeCSS("css_final.css"),
   overview_panel,
   education_panel,
   demographic_panel,
