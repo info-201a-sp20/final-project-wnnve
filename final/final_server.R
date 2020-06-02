@@ -83,7 +83,7 @@ server <- function(input, output) {
           size = 8, angle = 90, hjust = 1, vjust = 0.2)
       )
     return(plot)
-  }) 
+  })
   
 #Graph #2  
   output$select_plotly <- renderPlotly({
