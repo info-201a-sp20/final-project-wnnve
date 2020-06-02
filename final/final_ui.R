@@ -18,7 +18,17 @@ education_panel <- tabPanel(
   sidebarLayout(
     year_content,
     main_content
-  )
+  ),
+  h2(strong("Findings")),
+  p("I included this stacked bar chart because it compares
+    the unemployment rates of each education level by year. 
+    This is easier to see the differences. The chart reveals 
+    the average unemployment rate for each education level by year. 
+    One thing I observed from this was that the discrepancy between 
+    a primary school education level and a professional school 
+    education level got smaller as the years passed. In addition,
+    the chart descended as the years passed, which means that 
+    unemployment levels decreased.")
 )
 
 overview_panel <- tabPanel(
