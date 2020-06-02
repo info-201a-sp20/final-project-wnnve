@@ -5,7 +5,7 @@ output$interactive_graph <- renderPlotly({
   visualization <- function(dataset, region) {
     #GGPLOT
     plot <- ggplot(data = dataset) +
-      geom_point(mapping = aes(x = unemployment_rate, y = people_in_poverty, 
+      geom_point(mapping = aes(x = unemployment_rate, y = people_in_poverty / 1000, 
                                text = paste("State: ", State))) +
       labs(
         title = paste("Unemployment vs Number of People in Poverty By", region),

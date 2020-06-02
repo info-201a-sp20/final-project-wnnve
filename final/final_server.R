@@ -114,7 +114,7 @@ server <- function(input, output) {
                                  text = paste("State: ", State))) +
         labs(
           title = paste("Unemployment vs Number of People in Poverty By", region),
-          x = "Unemployment", y = "People in Poverty")
+          x = "Unemployment Rate", y = "People in Poverty (in Millions)")
       return(plot)
     }
     
@@ -125,8 +125,8 @@ server <- function(input, output) {
     unemployment_by_state <- unemployment_vs_poverty %>%
       group_by(State) %>%
       summarise(
-        unemployment_rate = sum(Unemployment_rate_2016, na.rm = TRUE),
-        people_in_poverty = sum(POVALL_2016, na.rm = TRUE)) %>%
+        unemployment_rate = sum(Unemployment_rate_2016, na.rm = TRUE) / 10,
+        people_in_poverty = sum(POVALL_2016, na.rm = TRUE) / 1000) %>%
       filter(unemployment_rate > input$slider2[1] & unemployment_rate < input$slider2[2]) %>%
       arrange(desc(unemployment_rate))
     

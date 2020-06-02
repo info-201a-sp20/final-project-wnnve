@@ -1,5 +1,6 @@
 library(shiny)
 library(ggplot2)
+library(shinythemes)
 
 year_content <- sidebarPanel(
   sliderInput(
@@ -34,11 +35,12 @@ education_panel <- tabPanel(
 overview_panel <- tabPanel(
   strong("Overview"),
   titlePanel("Overview"),
-  p("unemployment has been at an all time high because of the coronavirus, 
+  p("Unemployment has been at an all time high because of the coronavirus, 
   however, we want to analyze what other factors could affect unemployment. We specifically
     analyzed poverty, education, and demographics. Now with our findings, we decided to exclude
     the year 2020 because we did not have the sufficient amount of information to analyze our data.
     The numbers would have been skewed and incorrect, thus impacting the rest of our data analysis."),
+  h2("Questions:"),
   p("Some questions we are seeking to answer are... We will be using ____ and ___ datasets to answer
     these questions. The first dataset we looked at was unemployment vs poverty. 
     This dataset answers questions of how unemployment is spread throughout the U.S. 
@@ -50,7 +52,9 @@ overview_panel <- tabPanel(
     to primary school, high school, Associates, and Professional degree. It also has the unemployment
     rate based on the race of adults."),
   sidebarLayout(
-    img(src = "images/unemployment.jpg"),
+    img(src = "https://media.heartlandtv.com/images/Unemployment+image+4.jpg",
+        width = "900",
+        height = "400"),
     p("Unemployment has always been prevelent.... ")
   )
 )
@@ -119,7 +123,7 @@ page_one <- mainPanel(
 
 page_one_sliderbar <- sidebarPanel(
   sliderInput("slider2", label = h3("Adjust Unemployment Rate"), min = 0, 
-              max = 1000, value = c(0, 1000)),
+              max = 150, value = c(0, 150)),
   p("You can adjust the range of the unemployment rate by sliding the slider")
 )
 
@@ -132,15 +136,16 @@ unemployment_panel <- tabPanel(
   ),
   h2("Findings"),
   p("This graph shows the unemployment rate and the people in poverty by state. 
-    When you hover over the dots, it'll show the specific state, the number of people in poverty,
+    When you hover over the dots, it'll show the state, the number of people in poverty,
     and the unemployment rate for that state. This chart reveals that unemployment and the 
-    people in poverty are mostly correlated. As you can see, the furthest dot, Georgia,
+    people in poverty are mostly correlated. As you can see, one of the furthest dot, Georgia,
     has a high unemployment rate but the number of people in poverty isn't as high as other
     states that have a higher unemployment rate. Besides a few outliers, the unemployment
     rate usually corresponds to the number of people in poverty. ")
   )
 
 ui <- navbarPage(
+  theme = shinytheme("flatly"),
   strong("Unemployment"),
   overview_panel,
   education_panel,
