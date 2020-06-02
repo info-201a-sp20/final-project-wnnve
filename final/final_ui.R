@@ -64,7 +64,7 @@ overview_panel <- tabPanel(
 #Nicole's code 
 
 year_selected <- sidebarPanel(
-  h2("Choose what year to view"),
+  h2("Choose what year to view:"),
   selectInput(
     inputId = "selectyear",
     label = h3("Year"),
@@ -82,7 +82,7 @@ year_selected <- sidebarPanel(
 )
 
 year_graph <- mainPanel(
-  plotOutput(
+  plotlyOutput(
     outputId = "select_plotly"
   )
 )
@@ -101,17 +101,18 @@ demographic_panel <- tabPanel(
     year_graph
   ),
   main_graph,
-  h2("Findings"),
-  p("This chart reveals that among black, white, hispanic, 
+  h2(strong("Findings")),
+  p("These charts reveal that among black, white, hispanic, 
     and asian people, black people had a higher unemployment 
-    rate from 2010 - 2019. The green line shows the average 
+    rate from 2010 - 2019. The green/yellow line shows the average 
     unemployment rate and this allows us to see that asian 
     and white people are below the average unemployment rate 
     while hispanic people are close to average and black people 
     are above average. This graph creates a visualization to see 
-    how unemployment rates were widespread in 2010 but have become 
-    closer to the same rate in 2019 although black people still 
-    have the highest rate of unemployment.")
+    how unemployment rates were widespread in 2010, but overtime, have 
+    decreased and have become slightly more uniform. However, black 
+    people still have the highest rate of unemployment and 
+    disparities are still present.")
 )
 
 #Winnie's Page

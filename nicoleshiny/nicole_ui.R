@@ -6,15 +6,16 @@ ui <- fluidPage(
   ),
   p("This chart reveals that among black, white, hispanic, 
     and asian people, black people had a higher unemployment 
-    rate from 2010 - 2019. The green line shows the average 
+    rate from 2010 - 2019. The green/yellow line shows the average 
     unemployment rate and this allows us to see that asian 
     and white people are below the average unemployment rate 
     while hispanic people are close to average and black people 
     are above average. This graph creates a visualization to see 
-    how unemployment rates were widespread in 2010 but have become 
-    closer to the same rate in 2019 although black people still 
-    have the highest rate of unemployment."),
-  h2("Choose what year to view"),
+    how unemployment rates were widespread in 2010, but overtime, have 
+    decreased and have become slightly more uniform. However, black 
+    people still have the highest rate of unemployment and 
+    disparities are still present."),
+  h2("Choose what year to view:"),
   selectInput(
     inputId = "selectyear",
     label = h3("Year"),
@@ -29,7 +30,7 @@ ui <- fluidPage(
                    "2018" = 2018, 
                    "2019" = 2019)
   ),
-  plotOutput(
+  plotlyOutput(
     outputId = "select_plotly"
   )
 )
