@@ -45,14 +45,15 @@ plot_filter <- df %>%
 #SERVER 
 server <- function(input, output) {
 
-  output$plot <- renderPlot({
+  output$plot <- renderPlotly({
     
     # ggplot bar
     title <- paste0("Average Unemployment Rate by Education Level Dataset")
     
     plot <- ggplot(data = new_df,
-                   mapping = aes(x = Year, y = avg_unemployment_rate)) +
+                   mapping = aes(x = Year, y = avg_unemployment_rate, text = paste("Year: ", Year))) +
       geom_col(mapping = aes(fill = education_level), stat = "identity") +
+      theme_classic() +
       labs(title = title,
            x = "Year",
            y = "Unemployment Rate",

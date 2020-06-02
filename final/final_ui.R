@@ -10,7 +10,7 @@ year_content <- sidebarPanel(
 )
 
 main_content <- mainPanel(
-  plotOutput("plot"),
+  plotlyOutput("plot"),
 )
 
 education_panel <- tabPanel(
