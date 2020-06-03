@@ -9,3 +9,9 @@ h2 {
   font-family:"Arial";
   color: black;
 }
+
+li {
+  font-family: "Arial";
+  margin-top: 10px;
+  font-size: 18px;
+}
