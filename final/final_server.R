@@ -8,7 +8,7 @@ library(stringr)
 library(plotly)
 library(readxl)
 
-unemployment_df <- read.csv("../data/unemployment_data_us_kaggle.csv",
+unemployment_df <- read.csv("data/unemployment_data_us_kaggle.csv",
                             stringsAsFactors = FALSE)
 
 df_1 <- unemployment_df %>%
@@ -37,7 +37,7 @@ new_df <- summary %>%
   filter(Year != "2020")
 
 #Nicole's data
-df <- read.csv("../data/unemployment_data_us_kaggle.csv",
+df <- read.csv("data/unemployment_data_us_kaggle.csv",
                stringsAsFactors = FALSE)
 df <- mutate(df, avg_unemployment = (White + Black + Asian + Hispanic) / 4)
 
@@ -46,12 +46,12 @@ plot_filter <- df %>%
   group_by(Month)
 
 #Quinn's data
-unemployment_df_usda <- read_xls("../data/Unemployment_usda.xls",
+unemployment_df_usda <- read_xls("data/Unemployment_usda.xls",
                                  range = "Unemployment Med HH Income!A8:CJ3283")
 colnames(unemployment_df_usda) <- gsub(" ", "_", colnames(unemployment_df_usda))
 colnames(unemployment_df_usda) <- gsub(",", "", colnames(unemployment_df_usda))
 
-poverty_df_usda <- read_xls("../data/PovertyEstimates_usda.xls",
+poverty_df_usda <- read_xls("data/PovertyEstimates_usda.xls",
                             range = "Poverty Data 2018!A5:AB3198")
 colnames(poverty_df_usda) <- gsub(" ", "_", colnames(poverty_df_usda))
 colnames(poverty_df_usda) <- gsub(",", "", colnames(poverty_df_usda))
@@ -209,7 +209,7 @@ server <- function(input, output) {
 
     #Reads in CSV file
     unemployment_vs_poverty <-
-      read.csv("../data/Unemployement_Poverty_2016_kaggle.csv",
+      read.csv("data/Unemployement_Poverty_2016_kaggle.csv",
                stringsAsFactors = FALSE)
 
     #Filters the dataframe into a small dataframe by state

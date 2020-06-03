@@ -64,8 +64,7 @@ overview_panel <- tabPanel(
       education qualification of adults that went to primary, middle,
       and high school. As well as those that received an Associates
       and/or Professional degree. It also has the unemployment rate
-      based on the race of adults."),
-    #p("Unemployment has always been prevelent.... ")
+      based on the race of adults.")
   )
 )
 
@@ -165,9 +164,6 @@ unemployment_panel <- tabPanel(
 
 title_content_quinn <- titlePanel(strong("Summary Page"))
 
-#intro_row <- fluidRow(column(width = 12,
-#                            p("Intro")))
-
 ed_row <- fluidRow(column(width = 6,
                           h2("Effect of Education on Unemployment"),
                           tags$li("Education level and unemployment rate are
@@ -221,7 +217,6 @@ summary_panel <- tabPanel(
   strong("Summary"),
   fluidPage(
     title_content_quinn,
-    #intro_row,
     ed_row,
     race_row,
     poverty_row
