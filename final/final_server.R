@@ -8,7 +8,12 @@ library(stringr)
 library(plotly)
 library(readxl)
 
+<<<<<<< HEAD
 unemployment_df <- read.csv("data/unemployment_data_us_kaggle.csv",
+=======
+#Austin's data
+unemployment_df <- read.csv("../data/unemployment_data_us_kaggle.csv",
+>>>>>>> 776c989459785d2136a30bdb98dd48607b1773c0
                             stringsAsFactors = FALSE)
 
 df_1 <- unemployment_df %>%
