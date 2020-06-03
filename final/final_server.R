@@ -8,6 +8,7 @@ library(stringr)
 library(plotly)
 library(readxl)
 
+#Austin's data
 unemployment_df <- read.csv("../data/unemployment_data_us_kaggle.csv",
                             stringsAsFactors = FALSE)
 
