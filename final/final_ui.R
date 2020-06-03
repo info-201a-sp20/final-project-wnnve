@@ -64,7 +64,7 @@ overview_panel <- tabPanel(
 #Nicole's code 
 
 year_selected <- sidebarPanel(
-  h2("Choose what year to view:"),
+  h2("Choose which year to view:"),
   selectInput(
     inputId = "selectyear",
     label = h3("Year"),
