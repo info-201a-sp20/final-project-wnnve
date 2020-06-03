@@ -92,7 +92,7 @@ server <- function(input, output){
                      title = "Unemployment Rate (%)"),
         xaxis = list(tickformat = "",
                      title = "Month")
-      )
+      ) 
 
     return(plot3)
   }) 

@@ -45,12 +45,12 @@ plot_filter <- df %>%
 
 #Quinn's data
 unemployment_df_usda <- read_xls("../data/Unemployment_usda.xls", range = "Unemployment Med HH Income!A8:CJ3283")
-colnames(unemployment_df) <- gsub(' ', '_', colnames(unemployment_df))
-colnames(unemployment_df) <- gsub(',', '', colnames(unemployment_df))
+colnames(unemployment_df_usda) <- gsub(' ', '_', colnames(unemployment_df_usda))
+colnames(unemployment_df_usda) <- gsub(',', '', colnames(unemployment_df_usda))
 
 poverty_df_usda <- read_xls("../data/PovertyEstimates_usda.xls", range = "Poverty Data 2018!A5:AB3198")
-colnames(poverty_df) <- gsub(' ', '_', colnames(poverty_df))
-colnames(poverty_df) <- gsub(',', '', colnames(poverty_df))
+colnames(poverty_df_usda) <- gsub(' ', '_', colnames(poverty_df_usda))
+colnames(poverty_df_usda) <- gsub(',', '', colnames(poverty_df_usda))
 
 poverty_unemployment_state <- poverty_df_usda %>% 
   left_join(unemployment_df_usda, by = "FIPStxt") %>% 

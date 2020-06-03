@@ -34,15 +34,16 @@ education_panel <- tabPanel(
 
 overview_panel <- tabPanel(
   strong("Overview"),
-  titlePanel("Overview"),
+  titlePanel("Unemployment Overview"),
   p("Unemployment has been at an all time high because of the coronavirus, 
   however, we want to analyze what other factors could affect unemployment. We specifically
     analyzed poverty, education, and demographics. Now with our findings, we decided to exclude
     the year 2020 because we did not have the sufficient amount of information to analyze our data.
     The numbers would have been skewed and incorrect, thus impacting the rest of our data analysis."),
   h2("Questions:"),
-  p("Some questions we are seeking to answer are... We will be using ____ and ___ datasets to answer
-    these questions. The first dataset we looked at was unemployment vs poverty. 
+  p("Some questions we are seeking to answer are how is unemployment correlated with poverty and 
+    education? Are there demographic patterns surrounding unemployment? We will be using ____ and ___ 
+    datasets to answer these questions. The first dataset we looked at was unemployment vs poverty. 
     This dataset answers questions of how unemployment is spread throughout the U.S. 
     and we can also compare that to how poverty is spread throughout the U.S. 
     This will allow us to examine the relationship between unemployment and poverty 
@@ -214,7 +215,7 @@ summary_panel <- tabPanel(
 
 ui <- navbarPage(
   theme = shinytheme("flatly"),
-  title = strong("Unemployment"),
+
   includeCSS("css_final.css"),
   overview_panel,
   education_panel,
